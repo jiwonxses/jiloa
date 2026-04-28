@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  background: #f5f5f5;
+  color: #111;
+}
+
+.app.dark {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+/* ── Header ── */
+.header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app.dark .header {
+  background: #111;
+  border-color: #333;
+}
+
+.header a {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.header input {
+  padding: 0.4rem 0.7rem;
+  flex: 1;
+  min-width: 160px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: inherit;
+  color: inherit;
+}
+
+.app.dark .header input {
+  border-color: #555;
+  background: #222;
+  color: #eee;
+}
+
+.header button {
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: inherit;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.app.dark .header button {
+  border-color: #555;
+}
+
+/* ── Autocomplete ── */
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 160px;
+}
+
+.search-wrapper input {
+  width: 100%;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style: none;
+  z-index: 100;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.app.dark .suggestions {
+  background: #222;
+  border-color: #555;
+}
+
+.suggestions li {
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestions li:hover {
+  background: #f0f0f0;
+}
+
+.app.dark .suggestions li:hover {
+  background: #333;
+}
+
+/* ── Login form ── */
+.login-form {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.login-form input {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: inherit;
+  color: inherit;
+  min-width: 140px;
+}
+
+.app.dark .login-form input {
+  border-color: #555;
+  background: #222;
+  color: #eee;
+}
+
+.login-form button {
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: inherit;
+  color: inherit;
+}
+
+.login-error {
+  color: #cc0000;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.section h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* ── Horizontal scroll row ── */
+.movie-row {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+}
+
+.movie-row::-webkit-scrollbar {
+  height: 5px;
+}
+
+.movie-row::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 3px;
+}
+
+/* ── Movie card ── */
+.movie-card {
+  flex-shrink: 0;
+  width: 130px;
+  cursor: pointer;
+  position: relative;
+}
+
+.movie-card img {
+  width: 130px;
+  height: 195px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.movie-card .card-title {
+  font-size: 0.8rem;
+  padding: 4px 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-card .card-score {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.app.dark .movie-card .card-score {
+  color: #aaa;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* ── Detail page ── */
+.detail {
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detail > button {
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: inherit;
+  color: inherit;
+}
+
+.app.dark .detail > button {
+  border-color: #555;
+}
+
+.detail-top {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.detail-top img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.detail-info {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-info h1 {
+  font-size: 1.4rem;
+}
+
+.detail-info .genres {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.app.dark .detail-info .genres {
+  color: #aaa;
+}
+
+.detail-info .overview {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.detail-info .fav-toggle {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: inherit;
+  color: inherit;
+  align-self: flex-start;
+}
+
+.app.dark .detail-info .fav-toggle {
+  border-color: #555;
+}
