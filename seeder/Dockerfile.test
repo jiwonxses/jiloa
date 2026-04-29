@@ -1,0 +1,8 @@
+FROM movie-app-base:latest
+
+WORKDIR /app
+
+COPY importer_donnees.py ./
+COPY test_data/ /data/
+
+CMD ["python", "importer_donnees.py"]

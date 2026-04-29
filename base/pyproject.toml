@@ -1,0 +1,21 @@
+[project]
+name = "movie-app-base"
+version = "0.1.0"
+description = "Shared base image with ML deps for the movie app"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "psycopg2-binary>=2.9",
+    "pgvector>=0.3",
+    "sentence-transformers>=3.3",
+    "torch",
+]
+
+# === PyTorch CPU-only ===
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

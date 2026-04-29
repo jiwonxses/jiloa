@@ -1,1 +1,8 @@
 *.csv
+__pycache__/
+*.pyc
+.venv/
+.ruff_cache/
+*.tar.gz
+.DS_Store
+node_modules/

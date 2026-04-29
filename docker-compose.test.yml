@@ -1,0 +1,53 @@
+services:
+  db-test:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: movies_test
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pass
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user -d movies_test"]
+      interval: 3s
+      retries: 10
+
+  seeder-test:
+    build:
+      context: ./seeder
+      dockerfile: Dockerfile.test
+    environment:
+      DB_HOST: db-test
+      DB_NAME: movies_test
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+    depends_on:
+      db-test:
+        condition: service_healthy
+    restart: "no"
+
+  backend-test:
+    build:
+      context: ./backend
+    environment:
+      DB_HOST: db-test
+      DB_NAME: movies_test
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+      MODEL_PATH: /app/models/minilm-multilingual
+    ports:
+      - "8001:8000"
+    depends_on:
+      db-test:
+        condition: service_healthy
+      seeder-test:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8000/health\")' || exit 1"]
+      interval: 5s
+      retries: 5
+      start_period: 10s

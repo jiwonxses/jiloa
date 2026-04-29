@@ -1,0 +1,33 @@
+[project]
+name = "movie-app-backend"
+version = "0.1.0"
+description = "Movie recommendation API"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic-settings>=2.6",    
+    "psycopg2-binary>=2.9",
+    "pgvector>=0.3",
+    "sentence-transformers>=3.3",
+    "torch",
+]
+[dependency-groups]
+dev = [
+    "ruff>=0.8",
+    "pytest>=8.3",
+    "httpx>=0.28",
+]
+
+# Force PyTorch CPU-only (comme dans la base)
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
